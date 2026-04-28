@@ -171,8 +171,7 @@ def login():
                 return
             
             registro = response.data[0]
-
-            Estado = registro["ESTATUS"]
+            Estado = registro.get("ESTATUS")
             if Estado == "BAJA":
                 st.error("Usuario bloqueado por baja. Si es un error, consulte al administrador")
                 return
@@ -971,7 +970,8 @@ def vista_registro_usuario():
                 "USUARIO": correo,
                 "PASSWORD": bcrypt.hashpw(str(password).encode("utf-8"),bcrypt.gensalt()).decode("utf-8"),
                 "ROL": rol,
-                "LIQUIDADOR": usuario.upper()
+                "LIQUIDADOR": usuario.upper(),
+                "ESTATUS": "ACTIVO"
             }).execute()
 
             st.success("Usuario registrado correctamente")
