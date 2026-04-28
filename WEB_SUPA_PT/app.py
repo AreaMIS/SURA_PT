@@ -171,8 +171,8 @@ def login():
                 return
             
             registro = response.data[0]
-            Estado = registro.get("ESTATUS")
-            if Estado == "BAJA":
+
+            if registro.get("ESTATUS") == "BAJA":
                 st.error("Usuario bloqueado por baja. Si es un error, consulte al administrador")
                 return
 
