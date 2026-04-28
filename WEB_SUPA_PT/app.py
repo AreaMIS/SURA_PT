@@ -160,7 +160,7 @@ def login():
             response = (
                 supabase
                 .table("Login")
-                .select("USUARIO","PASSWORD","ROL","LIQUIDADOR")
+                .select("USUARIO","PASSWORD","ROL","LIQUIDADOR","ESTATUS")
                 .eq("USUARIO",user)
                 .limit(1)
                 .execute()
@@ -171,6 +171,10 @@ def login():
                 return
             
             registro = response.data[0]
+
+            if registro["ESTATUS"] == "BAJA":
+                st.error("Usuario bloqueado por baja. Si es un error, consulte al administrador")
+                return
 
             flag_psw = bcrypt.checkpw(password.encode("utf-8"), registro["PASSWORD"].encode("utf-8"))
             time.sleep(1)
