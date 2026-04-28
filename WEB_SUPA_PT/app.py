@@ -179,7 +179,7 @@ def login():
             flag_psw = bcrypt.checkpw(password.encode("utf-8"), registro["PASSWORD"].encode("utf-8"))
             time.sleep(1)
             if not flag_psw:
-                st.error("Usuario o contraseña incorrectos.")
+                st.error("Usuario o contraseña incorrectos. Vuelva a intentar")
                 return
             st.session_state["USUARIO"] = registro["USUARIO"]
             st.session_state["ROL"] = registro["ROL"]
