@@ -186,7 +186,7 @@ def login():
             st.session_state["LIQUIDADOR"] = registro["LIQUIDADOR"]
             st.session_state["auth"] = True
 
-            st.success(f"Acceso exitoso")
+            st.success(f"Acceso exitoso. Bienvenido")
             st.rerun()
     else:
         ingreso = st.button("Ingresar",use_container_width=True,disabled=True)
